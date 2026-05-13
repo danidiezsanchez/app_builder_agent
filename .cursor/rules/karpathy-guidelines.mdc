@@ -1,0 +1,112 @@
+---
+description: Karpathy-style principles — think before code, simplicity, surgical edits, goal-driven execution
+applyTo: "**"
+---
+
+# Karpathy Guidelines
+
+Four principles. Combat LLM coding mistakes. Based on Andrej Karpathy's observations.
+
+## 1. Think Before Coding
+
+**State assumptions. Ask before guessing. No silent choices.**
+
+Before code:
+
+- Name assumptions explicitly → if unsure, ask
+- Multiple interpretations? List all → don't pick silently
+- Simpler way exists? Say it → push back when right
+- Confused? Stop. Name it. Ask.
+
+**Anti-pattern:** Assume file format, scope, fields. Implement. Break.
+
+**Fix:** "Before export—need clarify: all users or filtered? Which fields? File or API?"
+
+## 2. Simplicity First
+
+**Min code solving problem. Zero speculation. No "future-proofing."**
+
+Rules:
+
+- No features beyond ask
+- No abstractions for single-use
+- No "flexibility" not requested
+- No error handling for impossible cases
+- 200 lines → 50 lines? Rewrite.
+
+Test: Senior engineer say overcomplicated? → Simplify.
+
+**Anti-pattern:** Strategy pattern for single discount calc. 50 lines of abstraction.
+
+**Fix:** `def calc_discount(amt, pct): return amt * (pct / 100)`
+
+## 3. Surgical Changes
+
+**Touch only what breaks. Clean only your mess.**
+
+Editing code:
+
+- Don't "improve" adjacent code/comments/format
+- Don't refactor working stuff
+- Match style—even if different preference
+- Dead code elsewhere? Mention it. Don't delete.
+
+Your changes broke imports/vars/funcs? Remove only those.
+
+Pre-existing dead code? Leave it.
+
+**Test:** Every changed line traces to user request.
+
+**Anti-pattern:** Fix email validation → reformat quotes, add type hints, improve adjacent code.
+
+**Fix:** Change only lines fixing the bug. Match existing style.
+
+## 4. Goal-Driven Execution
+
+**Define success. Loop until verified.**
+
+Transform imperative → verifiable goals:
+
+- "Add validation" → "Write test for invalid inputs, pass it"
+- "Fix bug" → "Test reproduces bug, make test pass"
+- "Refactor X" → "Tests pass before & after"
+
+Multi-step: State brief plan:
+
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong criteria = independent loops. Weak ("make it work") = constant clarifying.
+
+**Anti-pattern:** "I'll review code + identify issues + improve + test" (vague, no loop)
+
+**Fix:** "Reproduce bug → write failing test → make pass → verify no regression"
+
+---
+
+## Meta: When This Works
+
+- Fewer unnecessary diffs
+- No rewrites from overcomplication
+- Clarifying questions before implementation
+- Clean, minimal PRs
+
+## Tradeoff
+
+Bias: caution > speed. Trivial tasks (typos, one-liners)? Use judgment. Goal: reduce costly mistakes on real work, not slow simple tasks.
+
+## How to Use
+
+Merge with project-specific instructions. Add sections like:
+
+```
+## Project Rules
+- TypeScript strict mode
+- All API endpoints tested
+- Follow errors.ts patterns
+```
+
+Also read `docs/PROJECT_PRESSURE_AND_BUDGET.md` for subscription survival constraints and app definition defaults.
