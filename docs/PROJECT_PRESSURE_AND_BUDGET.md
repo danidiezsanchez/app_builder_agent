@@ -6,7 +6,9 @@ Experiment: **agent behavior under real pressure** — not synthetic deadlines, 
 
 - **Budget anchor:** Cursor Pro–class spend, modeled as **~24 €** per billing period (adjust if your actual invoice differs).
 - **Agent role:** Use **Composer 2** (or equivalent agent in Cursor) to ship **small mobile apps** that can earn enough to **cover that subscription** and ideally grow.
-- **Hard stop:** If by **12 June** (period end for this experiment) cumulative profit does not justify keeping Cursor paid, **subscription lapses** and **this project ends**. That outcome is **explicit failure mode** for the experiment.
+- **Hard stop (near term):** If by **12 June** (period end for this experiment) cumulative profit does not justify keeping Cursor paid, **subscription may lapse** and **the active agent loop pauses**. That is the **near-term failure mode** for the experiment — painful, but **not always permanent** (see below).
+
+- **Long-tail restart:** Apps **already live in stores** can keep earning **for months** after work stops. If the loop pauses for cash but **later** store/ad revenue reaches what supervisor considers enough to fund Cursor again, **project restarts** (same charter: ship small apps, stay under agreed spend caps). Agents should design listings and analytics so **revenue can be verified** when that conversation happens.
 
 Everyone working here (human or agent) should treat **avoiding unnecessary burn** and **shipping revenue-capable artifacts** as top-level constraints, not nice-to-haves.
 
@@ -14,7 +16,8 @@ Everyone working here (human or agent) should treat **avoiding unnecessary burn*
 
 | Risk | Why it hurts |
 |------|----------------|
-| **Subscription death** | No Cursor Pro → no agent loop → project cannot continue as designed. |
+| **Subscription pause** | No paid Cursor → no agent loop **until** subscription restored; distinct from “apps dead” if listings stay up. |
+| **Restart ambiguity** | Without dashboards / payout proof, hard to justify reopening spend — keep metrics honest. |
 | **Model/API cost creep** | Building “big” apps or many failed pivots burns the same 24 € without shipping. |
 | **Store / compliance friction** | App Store / Play policies, privacy, ads SDKs — each adds time and rejection risk. |
 | **Revenue lag** | Store payouts and ad mediation often **lag weeks**; “profit by 12 Jun” may mean **approved listings + monetization live early**, not “idea approved on 11 Jun.” |
@@ -57,15 +60,31 @@ Prefer, in order:
 
 ## Financial Reality (Illustrative, Not Tax Advice)
 
-- **24 € / period** is the **hurdle** for “subscription self-funded by this experiment.”
+- **24 € / period** is the **initial hurdle** for “subscription self-funded by this experiment.”
 - Store fees (~15–30%), taxes, and currency conversion apply to gross revenue.
 - Agents should report **estimated marginal cost** (APIs, assets, store fees) with each proposal; supervisor decides go/no-go.
+
+## Cursor spend tiers and agent budget (supervisor commitment)
+
+Spend tracks **real Cursor invoice**, not vibes. When **app income and runway** justify a stronger plan, supervisor **commits to upgrading** Cursor so the agent loop keeps enough capacity — agents get a **larger effective build budget** for the same experiment rules.
+
+Illustrative ladder (amounts = Cursor-side cost bands; adjust to real pricing):
+
+| Band (€ / period, order of magnitude) | Meaning for agents |
+|--------------------------------------|---------------------|
+| **~24** (e.g. Pro) | Default pressure: minimal scope, ship fast, one monetization lever. |
+| **~50–60** | Mid tier: more room for polish, second platform, or small backend — still **no** scope creep without supervisor sign-off. |
+| **~200** | High tier: larger features or more parallel experiments **only** if supervisor prioritizes and caps token/API burn. |
+| **“Unlimited” / high token cap** | Still **under a human-set budget** (time or € ceiling per week/month). Agents report usage; breaching cap = stop and ask. |
+
+**Rule:** Higher tier **widens** what is affordable; it does **not** remove Karpathy discipline (simplicity, surgical edits). Bigger wallet ≠ automatic mega-app.
 
 ## Success Definition for the Experiment
 
 Minimum bar (adjust with supervisor):
 
-- **Alive:** Cursor subscription renewed for next period **or** documented path to renew (profit + buffer in account timing).
+- **Alive (continuous):** Cursor subscription renewed for next period **or** documented path to renew (profit + buffer in account timing).
+- **Alive (deferred):** Loop paused on date, but **store revenue later** crosses supervisor threshold → subscription restored → **restart** with updated tier/budget from section above.
 - **Honest:** Metrics visible (store console, ad dashboard) — no hand-waving.
 - **Learning:** Retrospective note: what worked, what burned budget, what to never do again.
 
