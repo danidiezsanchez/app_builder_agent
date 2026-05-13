@@ -118,7 +118,7 @@ void main() {
 
       expect(engine.tryFinish(), isTrue);
       expect(engine.state, CozyFocusFsmState.idle);
-      expect(engine.remainingSeconds, cfg.workSeconds);
+      expect(engine.remainingSeconds, engine.config.workSeconds);
       expect(engine.cumulativeFocusSeconds, 0);
 
       expect(engine.tryApplyConfig(cfg), isTrue);
