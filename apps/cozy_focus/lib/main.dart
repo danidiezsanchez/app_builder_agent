@@ -1,11 +1,11 @@
+import 'package:cozy_focus/ui/cozy_focus_session_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const CozyFocusApp());
 }
 
-/// D0 shell only: proves Flutter project + theme wiring.
-/// Session FSM: `package:cozy_focus/cozy_focus.dart` (D2).
+/// Cozy Focus shell + D3 main session UI (FSM in `package:cozy_focus/cozy_focus.dart`).
 class CozyFocusApp extends StatelessWidget {
   const CozyFocusApp({super.key});
 
@@ -27,32 +27,7 @@ class CozyFocusApp extends StatelessWidget {
       title: 'Cozy Focus',
       debugShowCheckedModeBanner: false,
       theme: _buildLightTheme(),
-      home: const _CozyShell(),
-    );
-  }
-}
-
-class _CozyShell extends StatelessWidget {
-  const _CozyShell();
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Scaffold(
-      backgroundColor: scheme.surface,
-      appBar: AppBar(
-        title: const Text('Cozy Focus'),
-        backgroundColor: scheme.surfaceContainerHighest,
-      ),
-      body: Center(
-        child: Text(
-          'Shell ready — timer & FSM next.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: scheme.onSurfaceVariant,
-              ),
-        ),
-      ),
+      home: const CozyFocusSessionScreen(),
     );
   }
 }

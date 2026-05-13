@@ -101,10 +101,6 @@ class CozyFocusSessionEngine extends ChangeNotifier {
       _state == CozyFocusFsmState.focusRunning ||
       _state == CozyFocusFsmState.breakRunning;
 
-  bool get _paused =>
-      _state == CozyFocusFsmState.focusPaused ||
-      _state == CozyFocusFsmState.breakPaused;
-
   /// Advance countdown by [seconds] (test-friendly; UI can pass 1 each tick).
   void elapseSeconds(int seconds) {
     if (seconds <= 0) return;
