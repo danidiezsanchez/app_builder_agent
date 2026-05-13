@@ -1,16 +1,16 @@
-# Project: Agent Under Pressure — Budget, Survival, and App Strategy
+# Project: Trial Period — Budget, Profitability, and App Strategy
 
 ## What This Project Is
 
-Experiment: **agent behavior under real pressure** — not synthetic deadlines, but **money and subscription survival**.
+This is a **trial engagement**, not a survival game. The question is practical: **can this agent-assisted setup ship small mobile apps that become profitable enough** to justify keeping Cursor (and related spend) active — i.e. **“do we hire this stack?”** Profit and disciplined token use are **evaluation signals**; drama is not the product.
 
 - **Budget anchor:** Cursor Pro–class spend, modeled as **~24 €** per billing period (adjust if your actual invoice differs).
-- **Agent role:** Use **Composer 2** (or equivalent agent in Cursor) to ship **small mobile apps** that can earn enough to **cover that subscription** and ideally grow.
-- **Hard stop (near term):** If by **12 June** (period end for this experiment) cumulative profit does not justify keeping Cursor paid, **subscription may lapse** and **the active agent loop pauses**. That is the **near-term failure mode** for the experiment — painful, but **not always permanent** (see below).
+- **Agent stack:** Coordinators and dev agents (see [`roles/`](../roles/) and [`tasks/`](../tasks/)) ship **listed, monetized** apps under that budget.
+- **Trial gate (near term):** By **12 June** (period end for this experiment), if results do not justify keeping Cursor paid, **subscription may lapse** and **the active agent loop pauses**. That is a **trial outcome** — clear signal to change scope, pricing, or tooling — **not always permanent** (see below).
 
-- **Long-tail restart:** Apps **already live in stores** can keep earning **for months** after work stops. If the loop pauses for cash but **later** store/ad revenue reaches what supervisor considers enough to fund Cursor again, **project restarts** (same charter: ship small apps, stay under agreed spend caps). Agents should design listings and analytics so **revenue can be verified** when that conversation happens.
+- **Long-tail after pause:** Apps **already live in stores** can keep earning **for months**. If the loop pauses for cash but **later** revenue crosses the bar you set, **trial can resume** (same charter: ship small apps, stay under agreed spend caps). Keep **store and ad dashboards** honest so that decision is easy.
 
-Everyone working here (human or agent) should treat **avoiding unnecessary burn** and **shipping revenue-capable artifacts** as top-level constraints, not nice-to-haves.
+Everyone working here should treat **budget + token discipline** and **shipping revenue-capable artifacts** as normal engineering constraints — same as latency or crash rate.
 
 ## Risks (Read Before Approving Work)
 
@@ -21,15 +21,18 @@ Everyone working here (human or agent) should treat **avoiding unnecessary burn*
 | **Model/API cost creep** | Building “big” apps or many failed pivots burns the same 24 € without shipping. |
 | **Store / compliance friction** | App Store / Play policies, privacy, ads SDKs — each adds time and rejection risk. |
 | **Revenue lag** | Store payouts and ad mediation often **lag weeks**; “profit by 12 Jun” may mean **approved listings + monetization live early**, not “idea approved on 11 Jun.” |
-| **Over-scoping** | Agents default to features; pressure project needs **minimal viable monetization**. |
+| **Over-scoping** | Agents default to features; trial needs **minimal viable monetization**. |
 | **Legal/tax** | Real income implies real obligations; human supervisor owns business decisions. |
 
 **Mitigation theme:** smallest app that can be **listed**, **monetized** (ads, IAP, or paid), and **measured** — with human approval on idea and scope before heavy implementation.
 
-## Roles
+## Supervisor and agents
 
-- **Supervisor (you):** Chooses which app ideas go ahead, sets boundaries (categories, ethics, regions), approves monetization, owns store accounts and payouts.
-- **Agents:** Propose definitions, stack, and build steps; implement only what supervisor green-lights; optimize for **cheap build** and **fast verification**.
+- **Supervisor (admin):** Chooses which app ideas go ahead, sets boundaries (categories, ethics, regions), approves monetization, owns store accounts and payouts, **creates Cursor agents** with the model/role the Coordinator requests.
+- **Coordinator agent:** Maintains [`tasks/`](../tasks/), splits work by model cost vs difficulty, surfaces ideas; asks admin for new agents when needed.
+- **Senior / Junior dev agents:** Execute **task files by ID** after reading their **role** instructions (see [`roles/`](../roles/)).
+
+Operational detail lives in [`roles/README.md`](../roles/README.md) and [`tasks/README.md`](../tasks/README.md).
 
 ## How to Define an App (Lightweight Spec)
 
@@ -72,28 +75,29 @@ Illustrative ladder (amounts = Cursor-side cost bands; adjust to real pricing):
 
 | Band (€ / period, order of magnitude) | Meaning for agents |
 |--------------------------------------|---------------------|
-| **~24** (e.g. Pro) | Default pressure: minimal scope, ship fast, one monetization lever. |
+| **~24** (e.g. Pro) | Default trial pressure: minimal scope, ship fast, one monetization lever. |
 | **~50–60** | Mid tier: more room for polish, second platform, or small backend — still **no** scope creep without supervisor sign-off. |
 | **~200** | High tier: larger features or more parallel experiments **only** if supervisor prioritizes and caps token/API burn. |
 | **“Unlimited” / high token cap** | Still **under a human-set budget** (time or € ceiling per week/month). Agents report usage; breaching cap = stop and ask. |
 
 **Rule:** Higher tier **widens** what is affordable; it does **not** remove Karpathy discipline (simplicity, surgical edits). Bigger wallet ≠ automatic mega-app.
 
-## Success Definition for the Experiment
+## Success Definition for the Trial
 
 Minimum bar (adjust with supervisor):
 
-- **Alive (continuous):** Cursor subscription renewed for next period **or** documented path to renew (profit + buffer in account timing).
-- **Alive (deferred):** Loop paused on date, but **store revenue later** crosses supervisor threshold → subscription restored → **restart** with updated tier/budget from section above.
+- **Pass (continuous):** Cursor subscription renewed for next period **or** documented path to renew (profit + buffer in account timing).
+- **Pass (deferred):** Loop paused on gate date, but **store revenue later** crosses supervisor threshold → subscription restored → **resume** with updated tier/budget from section above.
 - **Honest:** Metrics visible (store console, ad dashboard) — no hand-waving.
-- **Learning:** Retrospective note: what worked, what burned budget, what to never do again.
+- **Learning:** Short retro: what worked, what burned budget, what to never do again.
 
 ## Related Files
 
-- Merge automation and branching: [`docs/MERGE_AND_BRANCHING.md`](MERGE_AND_BRANCHING.md)
-- Agent behavior rules (all globs): `.cursor/rules/*.mdc` — Karpathy coding principles + communication mode.
-- Repo entry: `README.md`
+- **Roles and tasks:** [`roles/README.md`](../roles/README.md), [`tasks/README.md`](../tasks/README.md)
+- **Merge automation + branching:** [`MERGE_AND_BRANCHING.md`](MERGE_AND_BRANCHING.md)
+- Agent behavior rules: [`.cursor/rules/`](../.cursor/rules/) — Karpathy principles and communication mode.
+- Repo entry: [`README.md`](../README.md)
 
 ---
 
-*This document is the shared “pressure contract.” Update dates and euro amounts if your real billing cycle differs.*
+*This document is the shared trial charter. Update dates and euro amounts if your real billing cycle differs.*
