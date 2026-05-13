@@ -4,7 +4,8 @@ void main() {
   runApp(const CozyFocusApp());
 }
 
-/// D0 shell only: proves Flutter project + theme wiring. FSM/timer in later tasks.
+/// D0 shell only: proves Flutter project + theme wiring.
+/// Session FSM: `package:cozy_focus/cozy_focus.dart` (D2).
 class CozyFocusApp extends StatelessWidget {
   const CozyFocusApp({super.key});
 
