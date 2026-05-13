@@ -1,0 +1,22 @@
+---
+description: Read role instructions then task by ID; respect budget and task boundaries
+applyTo: "**"
+---
+
+# Workflow: roles and tasks
+
+## On every agent session
+
+1. Confirm **role** (`coordinator` | `senior-dev` | `junior-dev`) from user brief or task frontmatter `role:`.
+2. Read `roles/<role>/INSTRUCTIONS.md` in this repo.
+3. If given a task **ID** (`T-nnnn`): open `tasks/active/T-nnnn-*.md` (grep `id: T-nnnn` if filename unknown). Work **only** inside that file’s scope and acceptance criteria.
+4. Respect **token posture**: Senior = minimal prose; Junior = iteration OK within task; Coordinator = split work so cheap models get volume, expensive models get hardness.
+
+## Coordinator reminders
+
+- Split: **easy + token-heavy** → junior + cheap model; **hard coding** → senior + `recommended_model:` for admin.
+- Ask admin for new Cursor agents using the block format in `roles/coordinator/INSTRUCTIONS.md`.
+
+## Framing
+
+Trial for profitability — not survival roleplay. See `docs/PROJECT_PRESSURE_AND_BUDGET.md`.

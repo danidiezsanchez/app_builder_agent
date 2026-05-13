@@ -109,4 +109,4 @@ Merge with project-specific instructions. Add sections like:
 - Follow errors.ts patterns
 ```
 
-Also read `docs/PROJECT_PRESSURE_AND_BUDGET.md` for subscription survival constraints and app definition defaults.
+Also read `docs/PROJECT_PRESSURE_AND_BUDGET.md` (trial charter), `roles/README.md`, `tasks/README.md`, and `.cursor/rules/workflow-roles-tasks.mdc`.
