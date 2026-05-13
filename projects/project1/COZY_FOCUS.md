@@ -111,7 +111,9 @@ Theme = {
 
 ## 5. Implementation task breakdown
 
-Use this as the **first sprint ordering**; adjust labels in your tracker.
+**Demo-oriented breakdown (asset requests, D0–D7, QA):** [`tasks/demo-build.md`](tasks/demo-build.md).
+
+Use the table below as the **first sprint ordering** for full v1; adjust labels in your tracker.
 
 | # | Task | Outcome |
 |---|------|---------|

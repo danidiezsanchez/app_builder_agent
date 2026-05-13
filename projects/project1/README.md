@@ -1,6 +1,7 @@
 # Project 1
 
-**Active app spec:** [Cozy Focus — Lo-Fi Pomodoro](COZY_FOCUS.md) (Flutter, FSM, themes + IAP).
+**Active app spec:** [Cozy Focus — Lo-Fi Pomodoro](COZY_FOCUS.md) (Flutter, FSM, themes + IAP).  
+**Demo task pack (assets + D0–D7):** [`tasks/demo-build.md`](tasks/demo-build.md).
 
 Work for **app project 1** happens on git branch **`project1`** (not only in this folder).
 
