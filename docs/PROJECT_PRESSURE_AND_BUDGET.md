@@ -94,7 +94,8 @@ Minimum bar (adjust with supervisor):
 ## Related Files
 
 - **Roles and tasks:** [`roles/README.md`](../roles/README.md), [`tasks/README.md`](../tasks/README.md)
-- Agent behavior rules (all globs): [`.cursor/rules/`](../.cursor/rules/) — Karpathy, caveman, workflow
+- **Merge automation + branching:** [`MERGE_AND_BRANCHING.md`](MERGE_AND_BRANCHING.md)
+- Agent behavior rules: [`.cursor/rules/`](../.cursor/rules/) — Karpathy principles and communication mode.
 - Repo entry: [`README.md`](../README.md)
 
 ---
