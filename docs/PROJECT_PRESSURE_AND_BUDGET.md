@@ -90,6 +90,7 @@ Minimum bar (adjust with supervisor):
 
 ## Related Files
 
+- Merge automation and branching: [`docs/MERGE_AND_BRANCHING.md`](MERGE_AND_BRANCHING.md)
 - Agent behavior rules (all globs): `.cursor/rules/*.mdc` — Karpathy coding principles + communication mode.
 - Repo entry: `README.md`
 

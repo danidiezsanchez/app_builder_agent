@@ -1,0 +1,73 @@
+name: Auto-merge instruction-only PRs
+
+# Enables GitHub "auto-merge" (squash) when the PR only touches orchestration paths.
+# Requires: repo setting "Allow auto-merge" + branch protection that still permits auto-merge.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+concurrency:
+  group: instructions-auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    outputs:
+      instructions_only: ${{ steps.diff.outputs.instructions_only }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Classify changed paths
+        id: diff
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "${BASE_SHA}"
+          mapfile -t files < <(git diff --name-only "${BASE_SHA}"...HEAD)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "instructions_only=false" >> "$GITHUB_OUTPUT"
+            echo "Empty diff; skip."
+            exit 0
+          fi
+          ok=true
+          for f in "${files[@]}"; do
+            case "$f" in
+              docs/*|roles/*|tasks/*|.cursor/*|README.md|.github/workflows/instructions-pr-auto-merge.yml) ;;
+              *) ok=false; echo "Out-of-allowlist path: $f" ;;
+            esac
+          done
+          if $ok; then
+            echo "instructions_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "instructions_only=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  automerge:
+    needs: classify
+    if: >-
+      needs.classify.outputs.instructions_only == 'true' &&
+      github.event.pull_request.head.repo.fork == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge (squash, delete branch)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          gh pr merge "${{ github.event.pull_request.number }}"
+          --auto
+          --squash
+          --delete-branch
