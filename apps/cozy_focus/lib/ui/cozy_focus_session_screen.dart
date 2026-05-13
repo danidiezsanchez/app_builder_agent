@@ -1,13 +1,18 @@
 import 'dart:async';
 
 import 'package:cozy_focus/cozy_focus.dart';
+import 'package:cozy_focus/ui/set_flow_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// D3 main view: timer, phase label, FSM actions, placeholder theme (TH01).
 ///
 /// Solid-color stand-in until D1 pixel backgrounds exist (`demo-build` D1a).
 class CozyFocusSessionScreen extends StatefulWidget {
-  const CozyFocusSessionScreen({super.key});
+  const CozyFocusSessionScreen({super.key, required this.initialConfig});
+
+  /// Loaded in [main] from [CozyFocusFlowPrefs] (or [CozyFocusConfig.demoDefault]).
+  final CozyFocusConfig initialConfig;
 
   @override
   State<CozyFocusSessionScreen> createState() => _CozyFocusSessionScreenState();
@@ -23,7 +28,7 @@ class _CozyFocusSessionScreenState extends State<CozyFocusSessionScreen> {
   @override
   void initState() {
     super.initState();
-    _engine = CozyFocusSessionEngine();
+    _engine = CozyFocusSessionEngine(config: widget.initialConfig);
     _engine.addListener(_onEngine);
     _syncTicker();
   }
@@ -105,18 +110,12 @@ class _CozyFocusSessionScreenState extends State<CozyFocusSessionScreen> {
       );
       return;
     }
-    await showDialog<void>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Set your flow'),
-        content: const Text(
-          'Work / break / session cap sliders land in D4 (shared_preferences).',
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('CLOSE')),
-        ],
-      ),
-    );
+    final next = await showSetFlowModal(context, initial: _engine.config);
+    if (next == null || !mounted) return;
+    _engine.tryApplyConfig(next);
+    final prefs = await SharedPreferences.getInstance();
+    await CozyFocusFlowPrefs.save(prefs, next);
+    if (mounted) setState(() {});
   }
 
   Future<void> _onSettings() async {
