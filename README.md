@@ -7,3 +7,10 @@ Trial-first setup: agents ship **small, monetized** mobile apps under a **real C
 - **Tasks** (splitting, IDs, pickup): [`tasks/README.md`](tasks/README.md)
 - **Merge automation + branch strategy:** [`docs/MERGE_AND_BRANCHING.md`](docs/MERGE_AND_BRANCHING.md)
 - Agent rules: [`.cursor/rules/`](.cursor/rules/)
+
+## Projects
+
+| Slug | Branch | Planning hub |
+|------|--------|--------------|
+| project1 — Cozy Focus | `project1` | [`projects/project1/`](projects/project1/) |
+| project2 — Spider Solitaire (text cards, Flutter) | `project2` *(to be created by `T-0003`)* | [`projects/project2/`](projects/project2/) |
